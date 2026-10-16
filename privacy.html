@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tap — Privacy</title>
+<link rel="icon" href="TapSquare.png">
+<style>
+  :root { --bg:#0A1824; --panel:#10243A; --line:rgba(255,255,255,0.08); --text:#EAF2F8; --muted:rgba(234,242,248,0.65); --accent:#4FD1E8; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; background:var(--bg); color:var(--text); }
+  body { font-family:"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,sans-serif; line-height:1.6; }
+  main { max-width:720px; margin:0 auto; padding:48px 20px; }
+  a { color:var(--accent); }
+  .back { font-size:14px; text-decoration:none; }
+  h1 { font-size:34px; margin:20px 0 4px; letter-spacing:-0.01em; }
+  .updated { color:var(--muted); font-size:14px; margin:0 0 28px; }
+  .summary { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:18px 22px; }
+  h2 { font-size:18px; margin:36px 0 8px; }
+  p, li { color:var(--text); }
+  .muted { color:var(--muted); }
+  ul { padding-left:20px; }
+  li + li { margin-top:6px; }
+  code { font-size:14px; background:rgba(255,255,255,0.08); border-radius:6px; padding:1px 6px; }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="index.html">← Back to Tap</a>
+  <h1>Privacy</h1>
+  <p class="updated">Last updated: October 2026 · applies to the Tap beta</p>
+
+  <div class="summary">
+    <strong>In short:</strong> Tap has no accounts, no analytics and no tracking. Tappy's AI runs on your own PC.
+    Your browsing, chats and files stay on your computer. Tap only contacts the internet for the things listed below.
+  </div>
+
+  <h2>What stays on your PC</h2>
+  <ul>
+    <li><strong>Tappy conversations and fact-checks.</strong> The AI model runs locally through Ollama. Your questions and Tappy's answers are not sent to any AI company.</li>
+    <li><strong>Files you ask Tappy about</strong> are read on your PC and never uploaded.</li>
+    <li><strong>Settings, history, site icons and logins</strong> are stored in <code>%LOCALAPPDATA%\Tap</code>.</li>
+    <li><strong>Private tabs</strong> leave no history, cookies or icons behind once they're closed.</li>
+    <li><strong>The error log</strong> is a small file on your PC. It never contains the sites you visit, your searches, files or conversations, and Tap never sends it anywhere. You can copy it yourself from <em>Help</em> if you want to report a bug.</li>
+  </ul>
+
+  <h2>When Tap goes online</h2>
+  <ul>
+    <li><strong>Websites you visit.</strong> Like any browser, Tap connects to the sites you open, and those sites see what they normally see (your IP address and so on). Tap uses Microsoft's WebView2, the engine inside Microsoft Edge, to show pages.</li>
+    <li><strong>Tappy's web searches.</strong> When Tappy decides it needs to look something up, it sends that search to DuckDuckGo and reads the results pages. Only the search words are sent, not your conversation.</li>
+    <li><strong>Site icons.</strong> To show sharp icons on Home, Tap may download a site's icon from that site.</li>
+    <li><strong>Update check.</strong> About once a day, Tap asks GitHub whether a newer version exists. No information about you or your use of Tap is included. If you choose to update, the installer is downloaded from GitHub.</li>
+    <li><strong>Ollama.</strong> When you download an AI model from Tap's setup screen, Ollama fetches it from its own servers.</li>
+  </ul>
+
+  <h2>Third parties</h2>
+  <p>The services above (websites, DuckDuckGo, GitHub, Ollama, Microsoft WebView2) have their own privacy policies, and Tap doesn't control what they collect. WebView2 follows your Windows diagnostic data settings.</p>
+
+  <h2>Deleting your data</h2>
+  <p>Uninstall Tap from Windows <em>Settings → Apps</em> and answer <em>Yes</em> when asked whether to delete your Tap data. Or delete the folder <code>%LOCALAPPDATA%\Tap</code> yourself.</p>
+
+  <h2>Questions</h2>
+  <p>Open an issue on <a href="https://github.com/paris32/tap-releases/issues">GitHub</a>.</p>
+</main>
+</body>
+</html>

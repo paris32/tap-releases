@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tap — beta</title>
+<meta name="description" content="Tap is a calm Windows browser with Tappy, an AI helper that runs on your own PC.">
+<link rel="icon" href="TapSquare.png">
+<style>
+  :root {
+    --bg: #0A1824;
+    --panel: #10243A;
+    --line: rgba(255,255,255,0.08);
+    --text: #EAF2F8;
+    --muted: rgba(234,242,248,0.65);
+    --accent: #4FD1E8;
+    --accent-ink: #062030;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--text); }
+  body {
+    font-family: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, sans-serif;
+    line-height: 1.55;
+    background:
+      radial-gradient(900px 500px at 50% -10%, rgba(79,209,232,0.14), transparent 70%),
+      var(--bg);
+    min-height: 100vh;
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 72px 20px 48px; }
+  .hero { text-align: center; }
+  .hero img { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 12px 40px rgba(0,0,0,0.35); }
+  h1 { font-size: 44px; letter-spacing: -0.02em; margin: 20px 0 4px; font-weight: 650; }
+  .badge {
+    display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--accent); border: 1px solid rgba(79,209,232,0.4); border-radius: 999px; padding: 2px 10px; vertical-align: middle;
+  }
+  .tagline { color: var(--muted); font-size: 18px; margin: 8px auto 32px; max-width: 520px; }
+  .download {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--accent); color: var(--accent-ink); text-decoration: none;
+    font-weight: 650; font-size: 17px; padding: 14px 28px; border-radius: 14px;
+    transition: transform .15s ease, box-shadow .15s ease;
+    box-shadow: 0 8px 30px rgba(79,209,232,0.25);
+  }
+  .download:hover { transform: translateY(-1px); box-shadow: 0 10px 36px rgba(79,209,232,0.35); }
+  .download svg { width: 20px; height: 20px; }
+  .meta { color: var(--muted); font-size: 13px; margin-top: 12px; }
+  section { margin-top: 56px; }
+  h2 { font-size: 20px; margin: 0 0 14px; font-weight: 620; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; }
+  .card + .card { margin-top: 12px; }
+  ol, ul { margin: 0; padding-left: 20px; }
+  li + li { margin-top: 6px; }
+  .muted { color: var(--muted); }
+  kbd {
+    font-family: inherit; font-size: 13px; background: rgba(255,255,255,0.08); border: 1px solid var(--line);
+    border-radius: 6px; padding: 1px 7px;
+  }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .grid .card + .card { margin-top: 0; }
+  .grid h3 { margin: 0 0 6px; font-size: 15px; }
+  .grid p { margin: 0; color: var(--muted); font-size: 14px; }
+  a { color: var(--accent); }
+  footer { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; display: flex; gap: 18px; flex-wrap: wrap; }
+  @media (max-width: 560px) {
+    main { padding-top: 48px; }
+    h1 { font-size: 36px; }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <div class="hero">
+    <img src="TapSquare.png" alt="Tap logo">
+    <h1>Tap <span class="badge">Beta</span></h1>
+    <p class="tagline">A calm, clutter-free browser for Windows, with Tappy, an AI helper that runs entirely on your own PC.</p>
+    <a class="download" id="download" href="https://github.com/paris32/tap-releases/releases/latest">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+      <span id="download-label">Download for Windows</span>
+    </a>
+    <div class="meta" id="meta">Windows 10 or 11 · 64-bit · free</div>
+  </div>
+
+  <section>
+    <h2>“Windows protected your PC”?</h2>
+    <div class="card">
+      <p style="margin-top:0">Tap is made by one independent developer and isn't code-signed yet (a signing certificate costs hundreds of euros a year). Windows shows this warning for any unsigned app it hasn't seen many times before. To install:</p>
+      <ol>
+        <li>Open <strong>TapSetup.exe</strong>.</li>
+        <li>On the blue screen, click <strong>More info</strong>.</li>
+        <li>Click <strong>Run anyway</strong>.</li>
+      </ol>
+      <p class="muted" style="margin-bottom:0">The installer needs no admin rights, and Tap installs just for your Windows user.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>What's inside</h2>
+    <div class="grid">
+      <div class="card"><h3>Tappy, on your PC</h3><p>Ask questions, summarize pages, fact-check claims. Tappy runs on a local AI model, so your conversations stay on your computer.</p></div>
+      <div class="card"><h3>Out of your way</h3><p>A clean, immersive layout with no clutter, plus a floating bubble for quick questions from anywhere.</p></div>
+      <div class="card"><h3>Your files too</h3><p>Ask Tappy about documents on your PC: PDFs, Word and Excel files.</p></div>
+      <div class="card"><h3>Updates itself</h3><p>Tap checks for new versions once a day and asks before installing them.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Good to know</h2>
+    <div class="card">
+      <ul>
+        <li>Tappy needs <strong>Ollama</strong> (free). Tap's setup screen walks you through installing it and downloading a model.</li>
+        <li>Local AI is demanding: <strong>16 GB of RAM</strong> is recommended, and a graphics card makes Tappy much faster.</li>
+        <li>This is a beta. Things will break. The <em>Help</em> panel inside Tap has a button to copy the error log for bug reports.</li>
+        <li>To uninstall: Windows <kbd>Settings</kbd> → <kbd>Apps</kbd> → Tap. You'll be asked whether to keep your data.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <span>Tap · made by Paris</span>
+    <a href="privacy.html">Privacy</a>
+    <a href="https://github.com/paris32/tap-releases/releases">All versions</a>
+  </footer>
+</main>
+
+<script>
+  // Point the button straight at the newest installer; if GitHub can't be reached,
+  // the button still goes to the latest release page.
+  (async function () {
+    try {
+      const r = await fetch("https://api.github.com/repos/paris32/tap-releases/releases/latest");
+      if (!r.ok) return;
+      const rel = await r.json();
+      const asset = (rel.assets || []).find(a => /^TapSetup.*\.exe$/i.test(a.name));
+      if (!asset) return;
+      const version = String(rel.tag_name || "").replace(/^v/i, "");
+      document.getElementById("download").href = asset.browser_download_url;
+      document.getElementById("download-label").textContent = "Download Tap " + version;
+      const mb = Math.round(asset.size / 1048576);
+      document.getElementById("meta").textContent = "Windows 10 or 11 · 64-bit · free · " + mb + " MB";
+    } catch (e) { /* keep the fallback link */ }
+  })();
+</script>
+</body>
+</html>
