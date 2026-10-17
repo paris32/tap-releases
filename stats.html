@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Tap — Downloads</title>
+<link rel="icon" href="TapSquare.png">
+<style>
+  :root { --bg:#0A1824; --panel:#10243A; --line:rgba(255,255,255,0.08); --text:#EAF2F8; --muted:rgba(234,242,248,0.65); --accent:#4FD1E8; }
+  * { box-sizing:border-box; }
+  html, body { margin:0; background:var(--bg); color:var(--text); }
+  body { font-family:"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,sans-serif; line-height:1.5; }
+  main { max-width:640px; margin:0 auto; padding:48px 20px; }
+  h1 { font-size:28px; margin:0 0 4px; }
+  .muted { color:var(--muted); font-size:14px; }
+  .total { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:20px 22px; margin:24px 0; }
+  .total .n { font-size:44px; font-weight:650; color:var(--accent); line-height:1.1; font-variant-numeric:tabular-nums; }
+  table { width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums; }
+  th, td { text-align:left; padding:10px 6px; border-bottom:1px solid var(--line); }
+  th { color:var(--muted); font-weight:500; font-size:13px; }
+  td.num, th.num { text-align:right; }
+  .note { margin-top:20px; font-size:13px; color:var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Tap downloads</h1>
+  <div class="muted" id="updated">Loading…</div>
+
+  <div class="total">
+    <div class="muted">All installer downloads</div>
+    <div class="n" id="total">–</div>
+  </div>
+
+  <table>
+    <thead><tr><th>Version</th><th>Released</th><th class="num">Downloads</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+
+  <p class="note">Counts include both new installs and in-app updates (Tap's updater downloads the same file). Live from GitHub. Refresh to update.</p>
+</main>
+<script>
+  (async function () {
+    const rows = document.getElementById("rows");
+    try {
+      const r = await fetch("https://api.github.com/repos/paris32/tap-releases/releases?per_page=100");
+      if (!r.ok) throw new Error("GitHub said " + r.status);
+      const releases = await r.json();
+      let total = 0;
+      for (const rel of releases) {
+        const n = (rel.assets || [])
+          .filter(a => /^TapSetup.*\.exe$/i.test(a.name))
+          .reduce((s, a) => s + a.download_count, 0);
+        total += n;
+        const tr = document.createElement("tr");
+        const date = rel.published_at ? new Date(rel.published_at).toLocaleDateString() : "draft";
+        tr.innerHTML = "<td></td><td></td><td class='num'></td>";
+        tr.children[0].textContent = rel.tag_name;
+        tr.children[1].textContent = date;
+        tr.children[2].textContent = n.toLocaleString();
+        rows.appendChild(tr);
+      }
+      document.getElementById("total").textContent = total.toLocaleString();
+      document.getElementById("updated").textContent = "As of " + new Date().toLocaleString();
+    } catch (e) {
+      document.getElementById("updated").textContent = "Couldn't reach GitHub (" + e.message + "). Try again in a minute.";
+    }
+  })();
+</script>
+</body>
+</html>
